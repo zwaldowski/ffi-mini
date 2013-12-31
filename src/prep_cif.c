@@ -133,6 +133,10 @@ static ffim_status FFI_HIDDEN ffi_mini_prep_cif_core(ffim_cif *cif, ffim_abi abi
 
   cif->flags = 0;
 
+#if HAVE_LONG_DOUBLE_VARIANT
+  ffi_prep_types (abi);
+#endif
+
   /* Initialize the return type if necessary */
   if ((cif->rtype->size == 0) && (initialize_aggregate(cif->rtype) != FFIM_OK))
     return FFIM_BAD_TYPEDEF;

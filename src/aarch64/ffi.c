@@ -137,18 +137,18 @@ get_basic_type_alignment (unsigned short type)
     case FFIM_TYPE_UINT8:
     case FFIM_TYPE_SINT8:
 #ifdef __APPLE__
-      return sizeof (UINT8);
+	  return sizeof (UINT8);
 #endif
     case FFIM_TYPE_UINT16:
     case FFIM_TYPE_SINT16:
 #ifdef __APPLE__
-      return sizeof (UINT16);
+	  return sizeof (UINT16);
 #endif
     case FFIM_TYPE_UINT32:
     case FFIM_TYPE_INT:
     case FFIM_TYPE_SINT32:
 #ifdef __APPLE__
-      return sizeof (UINT32);
+	  return sizeof (UINT32);
 #endif
     case FFIM_TYPE_POINTER:
     case FFIM_TYPE_UINT64:
@@ -304,15 +304,15 @@ is_hfa (ffim_type *ty)
 
 /* Test if an ffi_type is a candidate for passing in a register.
 
- This test does not check that sufficient registers of the
- appropriate class are actually available, merely that IFF
- sufficient registers are available then the argument will be passed
- in register(s).
+   This test does not check that sufficient registers of the
+   appropriate class are actually available, merely that IFF
+   sufficient registers are available then the argument will be passed
+   in register(s).
 
- Note that an ffi_type that is deemed to be a register candidate
- will always be returned in registers.
+   Note that an ffi_type that is deemed to be a register candidate
+   will always be returned in registers.
 
- Returns 1 if a register candidate else 0.  */
+   Returns 1 if a register candidate else 0.  */
 
 static int
 is_register_candidate (ffim_type *ty)
@@ -367,7 +367,7 @@ is_register_candidate (ffim_type *ty)
 }
 
 /* Test if an ffi_type argument or result is a candidate for a vector
- register.  */
+   register.  */
 
 static int
 is_v_register_candidate (ffim_type *ty)
