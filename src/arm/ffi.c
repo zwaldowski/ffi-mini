@@ -124,8 +124,7 @@ static size_t ffi_put_arg(ffim_type **arg_type, void **arg, char *stack)
    value is cif->vfp_used (word bitset of VFP regs used for passing
    arguments). These are only used for the VFP hard-float ABI.
 */
-int ffi_mini_prep_args_SYSV(char *stack, extended_cif *ecif, float *vfp_space);
-int ffi_mini_prep_args_SYSV(char *stack, extended_cif *ecif, float *vfp_space)
+int FFI_HIDDEN ffi_mini_prep_args_SYSV(char *stack, extended_cif *ecif, float *vfp_space)
 {
   register unsigned int i;
   register void **p_argv;
@@ -152,8 +151,7 @@ int ffi_mini_prep_args_SYSV(char *stack, extended_cif *ecif, float *vfp_space)
   return 0;
 }
 
-int ffi_mini_prep_args_VFP(char *stack, extended_cif *ecif, float *vfp_space);
-int ffi_mini_prep_args_VFP(char *stack, extended_cif *ecif, float *vfp_space)
+int FFI_HIDDEN ffi_mini_prep_args_VFP(char *stack, extended_cif *ecif, float *vfp_space)
 {
   // make sure we are using FFIM_VFP
   FFI_ASSERT(ecif->cif->abi == FFIM_VFP);
@@ -350,9 +348,10 @@ void ffi_mini_call(ffim_cif *cif, void (*fn)(void), void *rvalue, void **avalue)
       FFI_ASSERT(0);
       break;
     }
-  if (small_struct && rvalue != NULL)
+  FFI_ASSERT(rvalue != NULL);
+  if (small_struct)
     memcpy (rvalue, &temp, cif->rtype->size);
-  else if (vfp_struct && rvalue != NULL)
+  else if (vfp_struct)
     memcpy (rvalue, ecif.rvalue, cif->rtype->size);
 }
 

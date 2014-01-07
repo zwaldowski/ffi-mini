@@ -384,9 +384,9 @@ is_v_register_candidate (ffim_type *ty)
 
 struct arg_state
 {
-  size_t ngrn;                /* Next general-purpose register number. */
-  size_t nsrn;                /* Next vector register number. */
-  size_t nsaa;                /* Next stack offset. */
+  unsigned ngrn;                /* Next general-purpose register number. */
+  unsigned nsrn;                /* Next vector register number. */
+  size_t nsaa;                  /* Next stack offset. */
 };
 
 /* Initialize a procedure call argument marshalling state.  */
