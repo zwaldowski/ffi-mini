@@ -348,11 +348,18 @@ void ffi_mini_call(ffim_cif *cif, void (*fn)(void), void *rvalue, void **avalue)
       FFI_ASSERT(0);
       break;
     }
-  FFI_ASSERT(rvalue != NULL);
   if (small_struct)
-    memcpy (rvalue, &temp, cif->rtype->size);
+    {
+      FFI_ASSERT(rvalue != NULL);
+      memcpy (rvalue, &temp, cif->rtype->size);
+    }
+    
   else if (vfp_struct)
-    memcpy (rvalue, ecif.rvalue, cif->rtype->size);
+    {
+      FFI_ASSERT(rvalue != NULL);
+      memcpy (rvalue, ecif.rvalue, cif->rtype->size);
+    }
+    
 }
 
 /** private members **/
@@ -482,5 +489,6 @@ static void layout_vfp_args (ffim_cif *cif)
         }
     }
 }
+
 
 #endif
